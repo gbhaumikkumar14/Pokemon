@@ -1,36 +1,36 @@
 package com.bhaumikghodasara.domain.usecases
 
-import com.bhaumikghodasara.domain.common.ApiResult
+import com.bhaumikghodasara.domain.entities.common.ApiResult
 import com.bhaumikghodasara.domain.entities.*
 import com.bhaumikghodasara.domain.repository.PokemonRepository
 
 class PokemonUseCases(private val pokemonRepository: PokemonRepository) {
 
-    suspend fun getPokemonList(): ApiResult<PokemonData>{
+    suspend fun getPokemonList(): ApiResult<PokemonData> {
         return pokemonRepository.getPokemonList()
     }
 
-    suspend fun getPokemonDetails(pokemonId: String): ApiResult<PokemonDetailData>{
+    suspend fun getPokemonDetails(pokemonId: String): ApiResult<PokemonDetailData> {
         return pokemonRepository.getPokemonDetails(pokemonId)
     }
 
-    suspend fun getPokemonAdditionalDetails(pokemonId: String): ApiResult<PokemonAdditionalInfoData>{
+    suspend fun getPokemonAdditionalDetails(pokemonId: String): ApiResult<PokemonAdditionalInfoData> {
         return pokemonRepository.getPokemonAdditionalDetails(pokemonId)
     }
 
-    suspend fun getStrengthWeakness(pokemonId: String): ApiResult<StrengthWeaknessData>{
+    suspend fun getStrengthWeakness(pokemonId: String): ApiResult<StrengthWeaknessData> {
         return pokemonRepository.getStrengthWeakness(pokemonId)
     }
 
-    suspend fun getTypeFilter(): ApiResult<TypeFilterData>{
+    suspend fun getTypeFilter(): ApiResult<TypeFilterData> {
         return pokemonRepository.getTypeFilter()
     }
 
-    suspend fun getGenderFilter(): ApiResult<GenderFilterData>{
+    suspend fun getGenderFilter(): ApiResult<GenderFilterData> {
         return pokemonRepository.getGenderFilter()
     }
 
-    suspend fun getEvolutionChain(pokemonId: String): ApiResult<EvolutionChainData>{
+    suspend fun getEvolutionChain(pokemonId: String): ApiResult<EvolutionChainData> {
         return pokemonRepository.getEvolutionChain(pokemonId)
     }
 }

@@ -1,4 +1,4 @@
-package com.bhaumikghodasara.domain.common
+package com.bhaumikghodasara.domain.entities.common
 
 /**
  * A generic class that holds a value or an error status.

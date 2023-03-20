@@ -1,4 +1,4 @@
-package com.bhaumikghodasara.domain.common
+package com.bhaumikghodasara.domain.entities.common
 
 sealed class ErrorEntity {
     object Network : ErrorEntity()

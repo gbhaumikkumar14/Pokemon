@@ -1,7 +1,7 @@
 package com.bhaumikghodasara.data.repositories
 
 import com.bhaumikghodasara.data.repositories.dataSource.PokemonRemoteDataSource
-import com.bhaumikghodasara.domain.common.ApiResult
+import com.bhaumikghodasara.domain.entities.common.ApiResult
 import com.bhaumikghodasara.domain.entities.*
 import com.bhaumikghodasara.domain.repository.PokemonRepository
 
