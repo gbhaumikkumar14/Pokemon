@@ -1,6 +1,6 @@
 package com.bhaumikghodasara.domain.repository
 
-import com.bhaumikghodasara.domain.common.ApiResult
+import com.bhaumikghodasara.domain.entities.common.ApiResult
 import com.bhaumikghodasara.domain.entities.*
 
 interface PokemonRepository {
