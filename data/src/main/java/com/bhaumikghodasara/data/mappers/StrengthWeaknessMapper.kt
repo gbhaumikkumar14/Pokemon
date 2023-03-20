@@ -2,8 +2,10 @@ package com.bhaumikghodasara.data.mappers
 
 import com.bhaumikghodasara.data.models.StrengthWeaknessAPIResponse
 import com.bhaumikghodasara.domain.entities.*
+import javax.inject.Inject
 
-class StrengthWeaknessMapper: Mapper<StrengthWeaknessAPIResponse, StrengthWeaknessData> {
+class StrengthWeaknessMapper @Inject constructor()
+    : Mapper<StrengthWeaknessAPIResponse, StrengthWeaknessData> {
     override fun mapToDomainLayer(input: StrengthWeaknessAPIResponse): StrengthWeaknessData {
         return StrengthWeaknessData(
             damageRelations = input.damageRelations?.doubleDamageFrom?.map { doubleDamageFrom -> doubleDamageFrom.name }?.toList()

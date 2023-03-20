@@ -2,8 +2,10 @@ package com.bhaumikghodasara.data.mappers
 
 import com.bhaumikghodasara.data.models.PokemonDetailsApiResponse
 import com.bhaumikghodasara.domain.entities.*
+import javax.inject.Inject
 
-class PokemonDetailEntityMapper: Mapper<PokemonDetailsApiResponse, PokemonDetailData> {
+class PokemonDetailEntityMapper @Inject constructor()
+    : Mapper<PokemonDetailsApiResponse, PokemonDetailData> {
     override fun mapToDomainLayer(input: PokemonDetailsApiResponse): PokemonDetailData {
         return PokemonDetailData(
             abilities = input.abilities.map { abilities ->
