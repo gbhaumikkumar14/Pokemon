@@ -4,8 +4,9 @@ import com.bhaumikghodasara.data.repositories.dataSource.PokemonRemoteDataSource
 import com.bhaumikghodasara.domain.entities.common.ApiResult
 import com.bhaumikghodasara.domain.entities.*
 import com.bhaumikghodasara.domain.repository.PokemonRepository
+import javax.inject.Inject
 
-class PokemonRepositoryImpl(private val remoteDataSource: PokemonRemoteDataSource): PokemonRepository {
+class PokemonRepositoryImpl @Inject constructor(private val remoteDataSource: PokemonRemoteDataSource): PokemonRepository {
     override suspend fun getPokemonList(): ApiResult<PokemonData> {
         return remoteDataSource.getPokemonList()
     }

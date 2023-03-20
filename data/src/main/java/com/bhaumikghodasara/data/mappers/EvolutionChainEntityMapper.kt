@@ -4,8 +4,9 @@ import com.bhaumikghodasara.data.models.EvolutionChainApiResponse
 import com.bhaumikghodasara.data.models.EvolvesTo
 import com.bhaumikghodasara.domain.entities.EvolutionChainData
 import com.bhaumikghodasara.domain.entities.Species
+import javax.inject.Inject
 
-class EvolutionChainEntityMapper
+class EvolutionChainEntityMapper @Inject constructor()
     : Mapper<EvolutionChainApiResponse, EvolutionChainData>
 {
     override fun mapToDomainLayer(input: EvolutionChainApiResponse): EvolutionChainData {

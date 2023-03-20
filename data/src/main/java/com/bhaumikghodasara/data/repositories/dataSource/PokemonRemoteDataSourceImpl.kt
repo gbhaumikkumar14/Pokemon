@@ -10,8 +10,9 @@ import com.bhaumikghodasara.domain.entities.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
+import javax.inject.Inject
 
-class PokemonRemoteDataSourceImpl(
+class PokemonRemoteDataSourceImpl @Inject constructor(
     private val service: PokemonAPI,
     private val pokemonListEntityMapper: PokemonListEntityMapper,
     private val pokemonDetailEntityMapper: PokemonDetailEntityMapper,

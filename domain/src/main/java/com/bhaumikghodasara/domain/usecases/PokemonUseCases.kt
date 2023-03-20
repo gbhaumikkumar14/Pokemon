@@ -3,8 +3,9 @@ package com.bhaumikghodasara.domain.usecases
 import com.bhaumikghodasara.domain.entities.common.ApiResult
 import com.bhaumikghodasara.domain.entities.*
 import com.bhaumikghodasara.domain.repository.PokemonRepository
+import javax.inject.Inject
 
-class PokemonUseCases(private val pokemonRepository: PokemonRepository) {
+class PokemonUseCases @Inject constructor(private val pokemonRepository: PokemonRepository) {
 
     suspend fun getPokemonList(): ApiResult<PokemonData> {
         return pokemonRepository.getPokemonList()

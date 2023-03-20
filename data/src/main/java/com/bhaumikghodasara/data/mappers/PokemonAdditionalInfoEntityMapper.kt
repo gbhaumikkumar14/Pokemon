@@ -2,8 +2,10 @@ package com.bhaumikghodasara.data.mappers
 
 import com.bhaumikghodasara.data.models.PokemonAdditionalInfo
 import com.bhaumikghodasara.domain.entities.PokemonAdditionalInfoData
+import javax.inject.Inject
 
-class PokemonAdditionalInfoEntityMapper: Mapper<PokemonAdditionalInfo, PokemonAdditionalInfoData> {
+class PokemonAdditionalInfoEntityMapper @Inject constructor()
+    : Mapper<PokemonAdditionalInfo, PokemonAdditionalInfoData> {
     override fun mapToDomainLayer(input: PokemonAdditionalInfo): PokemonAdditionalInfoData {
         val eggs = input.eggGroups.map { eggGroups -> eggGroups.name }.toList()
 
