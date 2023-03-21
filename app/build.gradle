@@ -42,8 +42,9 @@ dependencies {
     def lifecycle_version = "2.6.0-alpha03"
     def coroutine_version = "1.6.4"
     def retrofit_version = "2.9.0"
-    def glide_version = "4.14.2"
+    def glide_version = "4.15.0"
     def timber_version = "5.0.1"
+    def android_svg_version = "1.2.1"
 
     implementation project(':data')
     implementation project(':domain')
@@ -82,6 +83,8 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glide_version"
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
+    // SVG
+    implementation "com.caverock:androidsvg:$android_svg_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

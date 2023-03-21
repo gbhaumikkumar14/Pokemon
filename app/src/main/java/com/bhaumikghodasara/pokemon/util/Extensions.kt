@@ -1,17 +1,16 @@
 package com.bhaumikghodasara.pokemon.util
 
 import android.widget.ImageView
-import com.bhaumikghodasara.pokemon.R
-import com.bumptech.glide.Glide
+import com.bhaumikghodasara.pokemon.PokemonApplication
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 fun ImageView.loadImage(
-    url: String = "",
-    placeHolderDrawable: Int = R.mipmap.ic_launcher,
+    pokemonId: String = "",
 ) {
-    if (url.isNotEmpty())
-        Glide.with(this.context)
-            .asBitmap()
-            .load(url)
+    if (pokemonId.isNotEmpty())
+        (this.context.applicationContext as PokemonApplication).getGlideRequestBuilder()
+            .load("${Constants.BASE_IMAGE_URL}$pokemonId${Constants.IMG_EXTENSION}")
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .into(this)
 }
 

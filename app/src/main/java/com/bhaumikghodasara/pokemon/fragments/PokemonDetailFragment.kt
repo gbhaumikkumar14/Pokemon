@@ -53,7 +53,9 @@ class PokemonDetailFragment : Fragment() {
         pokemonViewModel.pokemonAdditionalDetailLiveData.observe(viewLifecycleOwner) { it ->
             if (it != null) {
                 binding.pokemonDescription.text = it.flavorTextEntries
-                binding.eggGroupsValue.text = it.eggGroups.joinToString()
+                binding.eggGroupsValue.text = it.eggGroups.map {
+                        str -> str?.capitalizeFirstCharacter()
+                }.joinToString()
             }
         }
         pokemonViewModel.pokemonStrengthAndWeaknessLiveData.observe(viewLifecycleOwner) {
@@ -66,31 +68,34 @@ class PokemonDetailFragment : Fragment() {
     }
 
     private fun setCTAData() {
-        val listPokedex: List<String> =
-            pokemonViewModel.masterDetailsLiveData.value?.keys?.toList() ?: listOf()
-        if (listPokedex.isNotEmpty()) {
-            val index = listPokedex.indexOf(pokemonViewModel.selectedPokemonId.value)
-            if (index > 1) {
-                binding.previous.text = listPokedex[index - 1].capitalizeFirstCharacter()
+        val pokemonDataList = pokemonViewModel.masterDetailsLiveData.value?.values?.toList()?.sortedBy {
+                masterData -> masterData.pokemonDetailData?.id
+        }
+        pokemonDataList?.let {
+            val index = it.indexOfFirst {pokemonMasterData ->
+                pokemonMasterData.pokemonDetailData?.name == pokemonViewModel.selectedPokemonId.value
+            }
+            if (index >= 1) {
+                binding.previous.text = it[index - 1].pokemonDetailData?.name?.capitalizeFirstCharacter()
                 binding.previous.visibility = View.VISIBLE
             } else {
                 binding.previous.visibility = View.INVISIBLE
             }
 
-            if (index < listPokedex.size - 1) {
-                binding.next.text = listPokedex[index + 1].capitalizeFirstCharacter()
+            if (index < it.size - 1) {
+                binding.next.text = it[index + 1].pokemonDetailData?.name?.capitalizeFirstCharacter()
                 binding.next.visibility = View.VISIBLE
             } else {
                 binding.next.visibility = View.INVISIBLE
             }
 
-            binding.previous.setOnClickListener {
-                pokemonViewModel.selectedPokemonMutableLiveData.value = listPokedex[index - 1]
+            binding.previous.setOnClickListener {_ ->
+                pokemonViewModel.selectedPokemonMutableLiveData.value = it[index - 1].pokemonDetailData?.name
                 setUpUi()
 
             }
-            binding.next.setOnClickListener {
-                pokemonViewModel.selectedPokemonMutableLiveData.value = listPokedex[index + 1]
+            binding.next.setOnClickListener {_ ->
+                pokemonViewModel.selectedPokemonMutableLiveData.value = it[index + 1].pokemonDetailData?.name
                 setUpUi()
             }
         }
@@ -114,10 +119,10 @@ class PokemonDetailFragment : Fragment() {
 
                 val imageId = species?.url?.replace("https://pokeapi.co/api/v2/pokemon-species/", "")
                     ?.replace("/", "")
-                pokedexImage.loadImage("${Constants.BASE_IMAGE_URL}${imageId}${Constants.IMG_EXTENSION}")
+                pokedexImage.loadImage(imageId!!)
                 if (typesList != null) {
                     background.background =
-                        Utils().getGradientColors(requireContext(), typesList.toMutableList())
+                        Utils.getGradientColors(requireContext(), typesList.toMutableList())
                 }
                 binding.evolutionImage.addView(layout)
             }
@@ -134,15 +139,11 @@ class PokemonDetailFragment : Fragment() {
         val popupView: View =
             LayoutInflater.from(requireContext()).inflate(R.layout.popup_view, null)
 
-        val width = LinearLayout.LayoutParams.WRAP_CONTENT
-        val height = LinearLayout.LayoutParams.WRAP_CONTENT
+        val width = LinearLayout.LayoutParams.MATCH_PARENT
+        val height = LinearLayout.LayoutParams.MATCH_PARENT
         val focusable = true // lets taps outside the popup also dismiss it
         val popupWindow = PopupWindow(popupView, width, height, focusable)
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
-        popupView.setOnTouchListener { _, _ ->
-            popupWindow.dismiss()
-            true
-        }
         popupView.findViewById<TextView>(R.id.description).text =
             pokemonViewModel.pokemonAdditionalDetailLiveData.value?.flavorTextEntries
         popupView.findViewById<ImageButton>(R.id.close_button).setOnClickListener {
@@ -170,15 +171,14 @@ class PokemonDetailFragment : Fragment() {
     private fun handleSuccessResponse(it: PokemonDetailData?) {
         binding.pokemonDetailId.text = String.format(Constants.IMG_ID_FORMAT, it?.id)
         binding.pokemonDetailName.text = it?.name
-        binding.heightValue.text = it?.height.toString()
-        binding.weightValue.text = it?.weight.toString()
-        binding.abilitiesValue.text = it?.abilities?.map { result -> result.ability?.name }
-            ?.toMutableList()
-            ?.joinToString()
-        it?.sprites?.frontDefault?.let { it1 ->
+        binding.heightValue.text = Utils.getHeightInFtInchFromDecimeter(it?.height)
+        binding.weightValue.text = Utils.getWightFromHectoGrams(it?.weight)
+        binding.abilitiesValue.text = it?.abilities?.map {
+                result -> result.ability?.name?.capitalizeFirstCharacter()
+        }?.toMutableList()?.joinToString()
+        it?.id?.toString()?.let { it1 ->
             binding.pokemonDetailImage.loadImage(
-                it1,
-                R.drawable.ic_pokemon
+                it1
             )
         }
         addTypesViews(it?.types?.map { result -> result.type?.name }
@@ -200,7 +200,7 @@ class PokemonDetailFragment : Fragment() {
                 val statsValue = linearView.findViewById<TextView>(R.id.statValue)
                 val statsProgressBar = linearView.findViewById<ProgressBar>(R.id.statsProgressBar)
 
-                typeView.text = stats.stat?.name
+                typeView.text = stats.stat?.name?.capitalizeFirstCharacter()
                 statsValue.text = stats.baseStat.toString()
                 stats.baseStat?.let { statsProgressBar.progress = it }
                 binding.statsViewGroup.addView(linearView)
@@ -228,7 +228,7 @@ class PokemonDetailFragment : Fragment() {
     }
 
     private fun setImageBackground(types: MutableList<String?>) {
-        binding.imageBackground.background = Utils().getGradientColors(requireContext(), types)
+        binding.imageBackground.background = Utils.getGradientColors(requireContext(), types)
     }
 
     companion object {
