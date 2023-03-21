@@ -31,6 +31,7 @@
     <color name="shadow">#CACACA</color>
     <color name="jacarta">#2E3156</color>
     <color name="dark_electric_blue">#5D5F7E</color>
+    <color name="dark_electric_blue_75_percent">#BF5D5F7E</color>
     <color name="robin_egg_blue">#12C9CC</color>
     <color name="background">#DEEDED</color>
     <color name="columbia_blue">#C9DDE2</color>
