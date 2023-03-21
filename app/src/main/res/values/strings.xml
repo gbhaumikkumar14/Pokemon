@@ -4,7 +4,7 @@
     <string name="home_subtitle">Search for any Pokémon that exists on the planet</string>
     <string name="search_hint">Name or Number</string>
     <string name="read_more"><u>read more</u></string>
-    <string name="description">Spits fire that is hot enough to melt boulders. Known to cause forest fires unintentionally. When expelling a blast of super . . .read more</string>
+    <string name="description">Spits fire that is hot enough to melt boulders. Known to cause forest fires unintentionally. When expelling a blast of super and some hyper skills it has like flying, diving and some others</string>
     <string name="stats">Stats</string>
     <string name="height">Height</string>
     <string name="weight">Weight</string>
@@ -25,4 +25,8 @@
     <string name="loading">Loading</string>
     <string name="pokemon_image">Pokemon image</string>
     <string name="next_arrow">next arrow</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hp">HP</string>
+    <string name="flying">Flying</string>
 </resources>

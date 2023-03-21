@@ -12,7 +12,7 @@ interface PokemonAPI{
     @GET("pokemon/{pokemonId}")
     suspend fun getPokemonDetails(@Path("pokemonId")pokemonId: String): Response<PokemonDetailsApiResponse>
 
-    @GET()
+    @GET("pokemon-species/{pokemonId}")
     suspend fun getPokemonAdditionalDetails(@Path("pokemonId")pokemonId: String): Response<PokemonAdditionalInfo>
 
     @GET("type/{pokemonId}")
