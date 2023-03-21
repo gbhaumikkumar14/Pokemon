@@ -7,24 +7,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bhaumikghodasara.data.models.PokemonMasterData
 import com.bhaumikghodasara.domain.entities.PokemonDetailData
 import com.bhaumikghodasara.domain.entities.Types
 import com.bhaumikghodasara.pokemon.R
-import com.bhaumikghodasara.pokemon.util.Constants
+import com.bhaumikghodasara.pokemon.util.*
 import com.bhaumikghodasara.pokemon.util.Constants.IMG_ID_FORMAT
-import com.bhaumikghodasara.pokemon.util.Utils
-import com.bhaumikghodasara.pokemon.util.capitalizeFirstCharacter
-import com.bhaumikghodasara.pokemon.util.loadImage
 
 class PokemonListAdapter(
-    private val pokemonData: HashMap<String, PokemonMasterData>,
+//    private val pokemonData: HashMap<String, PokemonMasterData>,
     private val onItemClick: OnItemClick
 ) :
     RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
     private lateinit var getContext: Context
-    private var dataKey = pokemonData.keys.toList()
+    private var pokemonDataList = emptyList<PokemonMasterData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         getContext = parent.context
@@ -34,21 +32,20 @@ class PokemonListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val dataKey = dataKey[position]
-        val itemData = pokemonData[dataKey]
-        setImageBackground(holder.parentView, itemData?.pokemonDetailData)
-        itemData?.pokemonDetailData?.name?.let {
+//        val dataKey = dataList[position]
+        val itemData = pokemonDataList[position]
+        setImageBackground(holder.parentView, itemData.pokemonDetailData)
+        itemData.pokemonDetailData?.name?.let {
             holder.pokemonName.text = itemData.pokemonDetailData?.name!!.capitalizeFirstCharacter()
         }
-        holder.pokemonId.text = String.format(IMG_ID_FORMAT, itemData?.pokemonDetailData?.id)
+        holder.pokemonId.text = String.format(IMG_ID_FORMAT, itemData.pokemonDetailData?.id)
 
         holder.pokemonImage.loadImage(
-            "${Constants.BASE_IMAGE_URL}${itemData?.pokemonDetailData?.id}${Constants.IMG_EXTENSION}",
-            R.drawable.ic_pokemon
+            itemData.pokemonDetailData?.id.toString()
         )
 
         holder.parentView.setOnClickListener {
-            onItemClick.onItemClicked(position, itemData?.pokemonDetailData?.name!!)
+            onItemClick.onItemClicked(position, itemData.pokemonDetailData?.name!!)
         }
     }
 
@@ -58,7 +55,7 @@ class PokemonListAdapter(
     ) {
         val typesList = pokemonDetailData?.types?.map { types: Types -> types.type?.name }
         if (typesList != null) {
-            gradientView.background = Utils().getGradientColors(
+            gradientView.background = Utils.getGradientColors(
                 getContext,
                 typesList.toMutableList()
             )
@@ -66,7 +63,14 @@ class PokemonListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return dataKey.size
+        return pokemonDataList.size
+    }
+
+    fun setData(newList: List<PokemonMasterData>){
+        val geofenceDiffUtil = MyDiffUtil(pokemonDataList, newList)
+        val diffUtilResult = DiffUtil.calculateDiff(geofenceDiffUtil)
+        pokemonDataList = newList
+        diffUtilResult.dispatchUpdatesTo(this)
     }
 
     interface OnItemClick {

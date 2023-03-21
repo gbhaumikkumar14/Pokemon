@@ -38,11 +38,14 @@ class PokemonHomeFragment : Fragment(), PokemonListAdapter.OnItemClick {
 
     private fun setUpRecyclerView() {
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        val adapter = PokemonListAdapter( this)
+        binding.recyclerView.adapter = adapter
 
         pokemonViewModel.masterDetailsLiveData.observe(viewLifecycleOwner) {
             if (it != null) {
-                val adapter = PokemonListAdapter(it, this)
-                binding.recyclerView.adapter = adapter
+                adapter.setData(it.values.toList().sortedBy {
+                    masterData -> masterData.pokemonDetailData?.id
+                })
             }
             binding.loaderView.visibility = View.GONE
         }

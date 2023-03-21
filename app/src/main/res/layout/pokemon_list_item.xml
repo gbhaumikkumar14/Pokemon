@@ -22,9 +22,9 @@
 
         <ImageView
             android:id="@+id/pokemon_image"
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.99"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dim_120"
+            android:layout_height="@dimen/dim_160"
+            android:scaleType="fitXY"
             android:contentDescription="@string/pokemon_image"
             android:layout_marginTop="@dimen/dim_25"
             android:layout_marginStart="@dimen/dim_25"
