@@ -45,6 +45,9 @@ dependencies {
     def glide_version = "4.15.0"
     def timber_version = "5.0.1"
     def android_svg_version = "1.2.1"
+    def test_mockk_version = "1.13.4"
+    def test_mock_web_server = "4.10.0"
+    def test_androidx_core = "2.2.0"
 
     implementation project(':data')
     implementation project(':domain')
@@ -86,7 +89,18 @@ dependencies {
     // SVG
     implementation "com.caverock:androidsvg:$android_svg_version"
 
+    //Test Dependencies
+    // Kotlin Coroutine Tetsing dependenct
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_version"
+    // Mockk
+    testImplementation "io.mockk:mockk:$test_mockk_version"
+    // Mock Web Server
+    testImplementation "com.squareup.okhttp3:mockwebserver:$test_mock_web_server"
+    // JUnit
     testImplementation 'junit:junit:4.13.2'
+    // Core Architecture testing for switching thread
+    testImplementation "androidx.arch.core:core-testing:$test_androidx_core"
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

@@ -20,9 +20,7 @@ class PokemonViewModel @Inject constructor(private val pokemonUseCases: PokemonU
     // Pokemon Home Fragment
     private var _pokemonMutableLiveData = MutableLiveData<PokemonData?>()
     private var _pokemonMasterDetailsMap = HashMap<String, PokemonMasterData>()
-    private var _masterDetailsLiveData = MutableLiveData<HashMap<String, PokemonMasterData>>()
-    val masterDetailsLiveData: MutableLiveData<HashMap<String, PokemonMasterData>> get() =
-        _masterDetailsLiveData
+    val masterDetailsLiveData = MutableLiveData<HashMap<String, PokemonMasterData>>()
     val selectedPokemonMutableLiveData = MutableLiveData<String>()
     val selectedPokemonId: LiveData<String> get() = selectedPokemonMutableLiveData
     fun setSelectedPokemonName(pokemonId: String){
@@ -100,7 +98,7 @@ class PokemonViewModel @Inject constructor(private val pokemonUseCases: PokemonU
                 handlePokemonAdditionalDetailsData(pokemonAdditionalData)
                 handlePokemonStrengthAndWeaknessData(pokemonStrengthAndWeaknessData)
 
-                _masterDetailsLiveData.value = _pokemonMasterDetailsMap
+                masterDetailsLiveData.value = _pokemonMasterDetailsMap
             }
         }
     }
@@ -163,7 +161,7 @@ class PokemonViewModel @Inject constructor(private val pokemonUseCases: PokemonU
     // Filter Fragment Functions
 
     fun resetData() {
-        _masterDetailsLiveData.value = _pokemonMasterDetailsMap
+        masterDetailsLiveData.value = _pokemonMasterDetailsMap
     }
 
     private suspend fun getFilterGender(): ApiResult<GenderFilterData> {
