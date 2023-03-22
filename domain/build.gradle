@@ -32,6 +32,8 @@ android {
 
 dependencies {
     def coroutine_version = "1.6.4"
+    def test_mockk_version = "1.13.4"
+    def test_mock_web_server = "4.10.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -43,11 +45,19 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
     //android
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
-
     // Inject
     implementation 'javax.inject:javax.inject:1'
 
+    //Test Dependencies
+    // Kotlin Coroutine Tetsing dependenct
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_version"
+    // Mockk
+    testImplementation "io.mockk:mockk:$test_mockk_version"
+    // Mock Web Server
+    testImplementation "com.squareup.okhttp3:mockwebserver:$test_mock_web_server"
+    // JUnit
     testImplementation 'junit:junit:4.13.2'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
