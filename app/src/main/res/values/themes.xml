@@ -21,7 +21,7 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
         <item name="fontWeight">700</item>
-<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="TextThemeDescription" parent="@android:style/TextAppearance.Large">
@@ -31,7 +31,7 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">normal</item>
         <item name="fontWeight">700</item>
-<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="TextThemeLarge" parent="@android:style/TextAppearance.Large">
@@ -41,7 +41,7 @@
         <item name="android:textSize">30sp</item>
         <item name="android:textStyle">bold</item>
         <item name="fontWeight">800</item>
-<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="TextThemeLargeNormal" parent="@android:style/TextAppearance.Large">
@@ -51,7 +51,7 @@
         <item name="android:textSize">30sp</item>
         <item name="android:textStyle">normal</item>
         <item name="fontWeight">400</item>
-<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="TextThemeMedium" parent="@android:style/TextAppearance.Medium">
@@ -61,7 +61,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
         <item name="fontWeight">500</item>
-<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="TextThemeMediumJacarta" parent="@android:style/TextAppearance.Medium">
@@ -71,7 +71,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
         <item name="fontWeight">400</item>
-<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="TextThemeBold" parent="@android:style/TextAppearance.Medium">
@@ -79,7 +79,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="fontWeight">700</item>
-<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="TextThemeBold14" parent="@android:style/TextAppearance.Medium">
@@ -87,7 +87,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="fontWeight">700</item>
-<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="TextThemeRoboto400" parent="@android:style/TextAppearance.Medium">
@@ -95,7 +95,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">normal</item>
         <item name="fontWeight">400</item>
-<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="TextThemeBoldStats" parent="@android:style/TextAppearance.Medium">
@@ -105,7 +105,7 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="fontWeight">700</item>
-<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="SearchViewStyle" parent="android:Widget.EditText">
